@@ -69,5 +69,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("androidx.navigation:navigation-compose:2.6.0")
     implementation(kotlin("script-runtime"))
+    runtimeOnly(libs.androidx.material.icons.extended)
 
 }

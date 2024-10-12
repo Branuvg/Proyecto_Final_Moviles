@@ -24,18 +24,18 @@ import androidx.compose.ui.unit.dp
 import com.example.proyecto01.R
 import com.example.proyecto01.ui.usuario.UsuarioMainApp
 
-class Camera : ComponentActivity() {
+class Camara : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CameraMainApp()
+            CamaraMainApp()
         }
     }
 }
 
 @Composable
-fun CameraMainApp() {
+fun CamaraMainApp() {
     Column(
         modifier = Modifier
             .fillMaxSize()

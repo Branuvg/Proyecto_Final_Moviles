@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Proyecto01"
         tools:targetApi="31">
         <activity
+            android:name=".ui.camara.Camara"
+            android:exported="true" />
+        <activity
+            android:name=".ui.detalle.Detalle"
+            android:exported="true" />
+        <activity
+            android:name=".ui.equipo.Equipo"
+            android:exported="true" />
+        <activity
+            android:name=".ui.lista.Lista"
+            android:exported="true" />
+        <activity
+            android:name=".ui.usuario.Usuario"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
