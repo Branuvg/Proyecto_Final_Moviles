@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 
@@ -42,8 +41,6 @@ class Equipo : ComponentActivity() {
 
 @Composable
 fun EquipoMainApp() {
-    Contorno()
-
     Column(
         modifier = Modifier
             .fillMaxSize()

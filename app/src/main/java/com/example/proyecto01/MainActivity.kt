@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Proyecto01Theme {
-                EquipoMainApp()
+                nav()
             }
         }
     }
@@ -77,7 +77,7 @@ fun nav() {
             iconounselec = Icons.Outlined.Home,
         ),
         BottomNavItem(
-            titulo = "Buscar",
+            titulo = "Lista",
             iconoselec = Icons.Filled.Search,
             iconounselec = Icons.Outlined.Search,
         ),
