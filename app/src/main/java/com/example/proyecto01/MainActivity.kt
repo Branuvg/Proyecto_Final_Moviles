@@ -42,11 +42,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.proyecto01.ui.camara.Camara
+import com.example.proyecto01.ui.camara.CamaraMainApp
 import com.example.proyecto01.ui.equipo.Equipo
 import com.example.proyecto01.ui.equipo.EquipoMainApp
 import com.example.proyecto01.ui.lista.Lista
+import com.example.proyecto01.ui.lista.ListaMainApp
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 import com.example.proyecto01.ui.usuario.Usuario
+import com.example.proyecto01.ui.usuario.UsuarioMainApp
 
 
 class MainActivity : ComponentActivity() {
@@ -55,8 +63,31 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Proyecto01Theme {
-                nav()
+                MainScreen()
             }
+        }
+    }
+}
+
+
+@Composable
+fun MainScreen() {
+    val navController = rememberNavController()
+
+    Scaffold(
+        bottomBar = {
+            BottomNavigation(navController)
+        }
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = "equipo",
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable("equipo") { EquipoMainApp() }
+            composable("lista") { ListaMainApp() }
+            composable("camara") { CamaraMainApp() }
+            composable("usuario") { UsuarioMainApp() }
         }
     }
 }
@@ -65,82 +96,52 @@ data class BottomNavItem(
     val titulo: String,
     val iconoselec: ImageVector,
     val iconounselec: ImageVector,
-    )
+)
 
 @Composable
-fun nav() {
-    val mContext = LocalContext.current
+fun BottomNavigation(navController: NavController) {
     val items = listOf(
-        BottomNavItem(
-            titulo = "Equipo",
-            iconoselec = Icons.Filled.Home,
-            iconounselec = Icons.Outlined.Home,
-        ),
-        BottomNavItem(
-            titulo = "Lista",
-            iconoselec = Icons.Filled.Search,
-            iconounselec = Icons.Outlined.Search,
-        ),
-        BottomNavItem(
-            titulo = "Camera",
-            iconoselec = Icons.Filled.Place,
-            iconounselec = Icons.Outlined.Place,
-        ),
-        BottomNavItem(
-            titulo = "Usuario",
-            iconoselec = Icons.Filled.Person,
-            iconounselec = Icons.Outlined.Person,
-        )
+        BottomNavItem("Equipo", Icons.Filled.Home, Icons.Outlined.Home),
+        BottomNavItem("Lista", Icons.Filled.Search, Icons.Outlined.Search),
+        BottomNavItem("Camara", Icons.Filled.Place, Icons.Outlined.Place),
+        BottomNavItem("Usuario", Icons.Filled.Person, Icons.Outlined.Person)
     )
 
-    var itemSelecIndex by rememberSaveable {
-        mutableStateOf(0)
-    }
+    var selectedItemIndex by rememberSaveable { mutableStateOf(0) }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color.White // Cambiado a blanco para el fondo general
+    NavigationBar(
+        containerColor = Color.Red
     ) {
-        Scaffold(
-            bottomBar = {
-                NavigationBar(
-                    containerColor = Color.Red // Fondo rojo para la barra de navegación
-                ) {
-                    items.forEachIndexed { index, item ->
-                        NavigationBarItem(
-                            selected = itemSelecIndex == index,
-                            onClick = {
-                                itemSelecIndex = index
-                                //somthing
-                            },
-                            label = {
-                                Text(
-                                    text = item.titulo,
-                                    color = Color.White // Texto blanco
-                                )
-                            },
-                            icon = {
-                                Icon(
-                                    contentDescription = item.titulo,
-                                    imageVector = if (index == itemSelecIndex) {
-                                        item.iconoselec
-                                    } else item.iconounselec,
-                                    tint = Color.White // Iconos blancos
-                                )
-                            },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = Color.White,
-                                unselectedIconColor = Color.White.copy(alpha = 0.6f),
-                                selectedTextColor = Color.White,
-                                unselectedTextColor = Color.White.copy(alpha = 0.6f),
-                                indicatorColor = Color.Red.darker() // Un tono más oscuro de rojo para el indicador
-                            )
-                        )
-                    }
-                }
-            }
-        ) {
-            // Contenido del Scaffold
+        items.forEachIndexed { index, item ->
+            NavigationBarItem(
+                selected = selectedItemIndex == index,
+                onClick = {
+                    selectedItemIndex = index
+                    navController.navigate(item.titulo.lowercase())
+                },
+                label = {
+                    Text(
+                        text = item.titulo,
+                        color = Color.White
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = if (index == selectedItemIndex) {
+                            item.iconoselec
+                        } else item.iconounselec,
+                        contentDescription = item.titulo,
+                        tint = Color.White
+                    )
+                },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = Color.White,
+                    unselectedIconColor = Color.White.copy(alpha = 0.6f),
+                    selectedTextColor = Color.White,
+                    unselectedTextColor = Color.White.copy(alpha = 0.6f),
+                    indicatorColor = Color.Red.darker()
+                )
+            )
         }
     }
 }
@@ -153,7 +154,6 @@ fun Color.darker(factor: Float = 0.1f): Color =
         blue = blue * (1 - factor),
         alpha = alpha
     )
-
 
 //@Composable
 //fun Contorno() {
