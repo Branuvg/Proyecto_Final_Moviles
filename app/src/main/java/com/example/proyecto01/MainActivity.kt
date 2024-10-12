@@ -24,6 +24,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Place
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -31,9 +32,13 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -41,6 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -70,13 +76,30 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
+    val pantallaactual = remember { mutableStateOf("Equipo") }
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = pantallaactual.value,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                },
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = Color.Red
+                )
+            )
+        },
         bottomBar = {
-            BottomNavigation(navController)
+            BottomNavigation(navController,pantallaactual)
         }
     ) { innerPadding ->
         NavHost(
@@ -99,7 +122,7 @@ data class BottomNavItem(
 )
 
 @Composable
-fun BottomNavigation(navController: NavController) {
+fun BottomNavigation(navController: NavController, pantallaactual: MutableState<String>) {
     val items = listOf(
         BottomNavItem("Equipo", Icons.Filled.Home, Icons.Outlined.Home),
         BottomNavItem("Lista", Icons.Filled.Search, Icons.Outlined.Search),
@@ -118,6 +141,7 @@ fun BottomNavigation(navController: NavController) {
                 onClick = {
                     selectedItemIndex = index
                     navController.navigate(item.titulo.lowercase())
+                    pantallaactual.value = item.titulo
                 },
                 label = {
                     Text(
