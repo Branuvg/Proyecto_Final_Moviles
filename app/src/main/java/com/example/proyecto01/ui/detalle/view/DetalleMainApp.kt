@@ -23,8 +23,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.proyecto01.Contorno
+import com.example.proyecto01.ui.theme.Proyecto01Theme
 
 class Detalle : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,5 +94,13 @@ fun DetalleMainApp() {
             Icon(Icons.Default.KeyboardArrowDown, contentDescription = "Evolución")
             Text("Lv36")
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DetallePreview() {
+    Proyecto01Theme {
+        DetalleMainApp()
     }
 }

@@ -20,9 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
+import com.example.proyecto01.ui.theme.Proyecto01Theme
 
 class Camara : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +47,6 @@ fun CamaraMainApp() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Cámara",
-            modifier = Modifier.padding(top = 16.dp)
-        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -61,10 +59,6 @@ fun CamaraMainApp() {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Texto de guía
-        Text(text = "Con la cámara")
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         // Contenedor para la imagen detectada (ejemplo)
         Box(
@@ -77,5 +71,13 @@ fun CamaraMainApp() {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CamaraPreview() {
+    Proyecto01Theme {
+        CamaraMainApp()
     }
 }

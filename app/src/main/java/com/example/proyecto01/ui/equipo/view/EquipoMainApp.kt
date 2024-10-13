@@ -16,10 +16,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
+import com.example.proyecto01.ui.theme.Proyecto01Theme
 
 class Equipo : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,5 +58,14 @@ fun EquipoMainApp(navController: NavController) {
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun EquipoMainAppPreview() {
+    val navController = rememberNavController()
+    Proyecto01Theme {
+        EquipoMainApp(navController)
     }
 }

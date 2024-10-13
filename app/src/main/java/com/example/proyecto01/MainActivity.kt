@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -61,7 +62,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Proyecto01Theme {
-                MainScreen()
+                Main()
             }
         }
     }
@@ -70,7 +71,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun Main() {
     val navController = rememberNavController()
     val pantallaactual = remember { mutableStateOf("Equipo") }
 
@@ -180,20 +181,29 @@ fun Contorno() {
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             // Bordes laterales
-            Box(
+            Box(//izquierdo
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(4.dp) // Ancho menor para el borde izquierdo
-                    .background(Color.Red) // Color del borde izquierdo
+                    .width(4.dp)
+                    .background(Color.Red)
             )
 
-            Box(
+            Box(//Derecho
                 modifier = Modifier
                     .fillMaxHeight()
                     .align(Alignment.CenterEnd)
-                    .width(4.dp) // Ancho menor para el borde derecho
-                    .background(Color.Red) // Color del borde derecho
+                    .width(4.dp)
+                    .background(Color.Red)
             )
         }
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun MainPreview() {
+    Proyecto01Theme {
+        Main()
     }
 }
