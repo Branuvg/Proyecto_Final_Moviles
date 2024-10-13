@@ -73,8 +73,6 @@ fun UsuarioMainApp() {
 @Composable
 fun ProfileDes(){
     val avatar = painterResource(id = R.drawable.perfil_pic)
-    val fondo = painterResource(id = R.drawable.fondo_perfil)
-    val circle = painterResource(id = R.drawable.circle)
 
     Column(horizontalAlignment = Alignment.CenterHorizontally)
     {
@@ -82,27 +80,9 @@ fun ProfileDes(){
         Box (
             Modifier
                 .fillMaxWidth()
-                .height(200.dp)
+                .height(150.dp)
         )
         {
-            Image(
-                painter = fondo,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .height(150.dp)
-                    .alpha(0.6f)
-            )
-
-            Image(
-                painter = circle,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(150.dp)
-                    .align(Alignment.Center)
-                    .absoluteOffset(0.dp, 40.dp)
-            )
-
             Image(painter = avatar,
                 contentDescription = null,
                 modifier = Modifier
@@ -114,7 +94,7 @@ fun ProfileDes(){
         Text(text = "Nombre",
             style = TextStyle(
                 fontSize = 20.sp, fontWeight = FontWeight.Bold),
-            modifier = Modifier.padding(20.dp)
+            modifier = Modifier.padding(50.dp)
         )
     }
 }
@@ -130,15 +110,13 @@ fun Menu(){
     Column (Modifier.fillMaxWidth()
     )
     {
-        HorizontalDivider(thickness = 1.dp, color = Color.Gray)
-
         Row {
             Image(
                 painter = yo,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
-                    .absoluteOffset(0.dp, 15.dp)
+                    .size(60.dp)
+                    .padding(10.dp)
             )
 
             Text(
@@ -148,15 +126,14 @@ fun Menu(){
             )
         }
 
-        HorizontalDivider(thickness = 1.dp, color = Color.Gray)
 
         Row {
             Image(
                 painter = emer,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
-                    .absoluteOffset(0.dp, 15.dp)
+                    .size(60.dp)
+                    .padding(10.dp)
             )
 
             Text(
@@ -166,15 +143,13 @@ fun Menu(){
             )
         }
 
-        HorizontalDivider(thickness = 1.dp, color = Color.Gray)
-
         Row {
             Image(
                 painter = settings,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
-                    .absoluteOffset(0.dp, 15.dp)
+                    .size(60.dp)
+                    .padding(10.dp)
             )
 
             Text(
@@ -184,15 +159,14 @@ fun Menu(){
             )
         }
 
-        HorizontalDivider(thickness = 1.dp, color = Color.Gray)
 
         Row {
             Image(
                 painter = not,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
-                    .absoluteOffset(0.dp, 15.dp)
+                    .size(60.dp)
+                    .padding(10.dp)
             )
 
             Text(
@@ -201,8 +175,6 @@ fun Menu(){
                 modifier = Modifier.padding(20.dp)
             )
         }
-
-        HorizontalDivider(thickness = 1.dp, color = Color.Gray)
     }
 }
 
