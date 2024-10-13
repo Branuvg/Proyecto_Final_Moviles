@@ -205,3 +205,11 @@ fun Menu(){
         HorizontalDivider(thickness = 1.dp, color = Color.Gray)
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun UsuarioPreview() {
+    Proyecto01Theme {
+        UsuarioMainApp()
+    }
+}
