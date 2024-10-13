@@ -1,4 +1,4 @@
-package com.example.proyecto01.ui.lista
+package com.example.proyecto01.ui.lista.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

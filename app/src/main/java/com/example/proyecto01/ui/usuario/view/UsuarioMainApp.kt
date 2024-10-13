@@ -1,4 +1,4 @@
-package com.example.proyecto01.ui.usuario
+package com.example.proyecto01.ui.usuario.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -20,7 +20,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.proyecto01.Contorno
-import com.example.proyecto01.ui.detalle.DetalleMainApp
 
 class Usuario : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.proyecto01.ui.camara
+package com.example.proyecto01.ui.camara.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -23,7 +23,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
-import com.example.proyecto01.ui.usuario.UsuarioMainApp
 
 class Camara : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

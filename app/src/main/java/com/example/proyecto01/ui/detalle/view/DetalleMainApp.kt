@@ -1,4 +1,4 @@
-package com.example.proyecto01.ui.detalle
+package com.example.proyecto01.ui.detalle.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

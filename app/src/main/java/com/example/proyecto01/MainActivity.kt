@@ -47,12 +47,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.proyecto01.ui.camara.CamaraMainApp
-import com.example.proyecto01.ui.detalle.DetalleMainApp
-import com.example.proyecto01.ui.equipo.EquipoMainApp
-import com.example.proyecto01.ui.lista.ListaMainApp
+import com.example.proyecto01.ui.camara.view.CamaraMainApp
+import com.example.proyecto01.ui.detalle.view.DetalleMainApp
+import com.example.proyecto01.ui.equipo.view.EquipoMainApp
+import com.example.proyecto01.ui.lista.view.ListaMainApp
 import com.example.proyecto01.ui.theme.Proyecto01Theme
-import com.example.proyecto01.ui.usuario.UsuarioMainApp
+import com.example.proyecto01.ui.usuario.view.UsuarioMainApp
 
 
 class MainActivity : ComponentActivity() {
