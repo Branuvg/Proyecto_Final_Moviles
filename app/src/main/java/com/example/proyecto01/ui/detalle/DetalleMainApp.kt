@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,29 +14,33 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.proyecto01.R
-import com.example.proyecto01.ui.equipo.EquipoMainApp
+import com.example.proyecto01.Contorno
 
 class Detalle : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DetalleMainApp()
+            //DetalleMainApp()
         }
     }
 }
 
 @Composable
 fun DetalleMainApp() {
+
+    Contorno()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -84,13 +87,9 @@ fun DetalleMainApp() {
         //Evoluciones
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text("Lv7")
-            Image(
-                painter = painterResource(id = R.drawable.ic_camera), // Reemplazar con el recurso adecuado
-                contentDescription = "Cámara",
-                modifier = Modifier.size(64.dp)
-            )
+            Icon(Icons.Default.KeyboardArrowDown, contentDescription = "Evolución")
             Text("Lv25")
-            //Icon(Icons.Default.ArrowDownward, contentDescription = "Evolución")
+            Icon(Icons.Default.KeyboardArrowDown, contentDescription = "Evolución")
             Text("Lv36")
         }
     }

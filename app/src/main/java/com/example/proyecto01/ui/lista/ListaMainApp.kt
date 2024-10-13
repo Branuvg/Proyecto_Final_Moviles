@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -25,6 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
 
 class Lista : ComponentActivity() {
@@ -32,24 +36,21 @@ class Lista : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ListaMainApp()
+            //ListaMainApp()
         }
     }
 }
 
 @Composable
-fun ListaMainApp() {
+fun ListaMainApp(navController: NavController) {
+
+    Contorno()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Título
-        Text(
-            text = "Nave",
-            modifier = Modifier.padding(vertical = 16.dp)
-        )
-
         // Barra de búsqueda y botón de cámara
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -64,8 +65,8 @@ fun ListaMainApp() {
                 },
                 modifier = Modifier.weight(1f)
             )
-//            Spacer(modifier = Modifier.width(8.dp))
-//            Icon(Icons.Default.CameraAlt, contentDescription = "Cámara")
+            Spacer(modifier = Modifier.width(8.dp))
+            Icon(Icons.Default.LocationOn, contentDescription = "Cámara")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -78,6 +79,9 @@ fun ListaMainApp() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
+                        .clickable {
+                            navController.navigate("detalle")
+                        }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.pokeball_icon), // Icono de Pokébola

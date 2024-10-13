@@ -1,18 +1,14 @@
 package com.example.proyecto01
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -39,27 +35,23 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.proyecto01.ui.camara.Camara
 import com.example.proyecto01.ui.camara.CamaraMainApp
-import com.example.proyecto01.ui.equipo.Equipo
+import com.example.proyecto01.ui.detalle.DetalleMainApp
 import com.example.proyecto01.ui.equipo.EquipoMainApp
-import com.example.proyecto01.ui.lista.Lista
 import com.example.proyecto01.ui.lista.ListaMainApp
 import com.example.proyecto01.ui.theme.Proyecto01Theme
-import com.example.proyecto01.ui.usuario.Usuario
 import com.example.proyecto01.ui.usuario.UsuarioMainApp
 
 
@@ -99,7 +91,7 @@ fun MainScreen() {
             )
         },
         bottomBar = {
-            BottomNavigation(navController,pantallaactual)
+            Nav(navController,pantallaactual)
         }
     ) { innerPadding ->
         NavHost(
@@ -107,10 +99,11 @@ fun MainScreen() {
             startDestination = "equipo",
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("equipo") { EquipoMainApp() }
-            composable("lista") { ListaMainApp() }
+            composable("equipo") { EquipoMainApp(navController) }
+            composable("lista") { ListaMainApp(navController) }
             composable("camara") { CamaraMainApp() }
             composable("usuario") { UsuarioMainApp() }
+            composable("detalle") { DetalleMainApp() }
         }
     }
 }
@@ -122,7 +115,7 @@ data class BottomNavItem(
 )
 
 @Composable
-fun BottomNavigation(navController: NavController, pantallaactual: MutableState<String>) {
+fun Nav(navController: NavController, pantallaactual: MutableState<String>) {
     val items = listOf(
         BottomNavItem("Equipo", Icons.Filled.Home, Icons.Outlined.Home),
         BottomNavItem("Lista", Icons.Filled.Search, Icons.Outlined.Search),
@@ -179,55 +172,28 @@ fun Color.darker(factor: Float = 0.1f): Color =
         alpha = alpha
     )
 
-//@Composable
-//fun Contorno() {
-//    Surface(
-//        modifier = Modifier.fillMaxSize(),
-//        color = Color.White
-//    ) {
-//        Box(modifier = Modifier.fillMaxSize()) {
-//            // Borde superior
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(100.dp) // Altura mayor para el borde superior
-//                    .background(Color.Red) // Color del borde superior
-//            )
-//
-//            // Borde inferior
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .align(Alignment.BottomCenter)
-//                    .height(75.dp) // Altura mayor para el borde inferior
-//                    .background(Color.Red) // Color del borde inferior
-//            )
-//
-//            // Bordes laterales
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxHeight()
-//                    .width(4.dp) // Ancho menor para el borde izquierdo
-//                    .background(Color.Red) // Color del borde izquierdo
-//            )
-//
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxHeight()
-//                    .align(Alignment.CenterEnd)
-//                    .width(4.dp) // Ancho menor para el borde derecho
-//                    .background(Color.Red) // Color del borde derecho
-//            )
-//
-//            // Contenido dentro del margen
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .padding(16.dp), // Espacio interno
-//                verticalArrangement = Arrangement.Center,
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//            }
-//        }
-//    }
-//}
+@Composable
+fun Contorno() {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        //color = Color.White
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            // Bordes laterales
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .width(4.dp) // Ancho menor para el borde izquierdo
+                    .background(Color.Red) // Color del borde izquierdo
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .align(Alignment.CenterEnd)
+                    .width(4.dp) // Ancho menor para el borde derecho
+                    .background(Color.Red) // Color del borde derecho
+            )
+        }
+    }
+}

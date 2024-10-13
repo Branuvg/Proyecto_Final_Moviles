@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.proyecto01.Contorno
 import com.example.proyecto01.ui.detalle.DetalleMainApp
 
 class Usuario : ComponentActivity() {
@@ -26,13 +27,16 @@ class Usuario : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            UsuarioMainApp()
+            //UsuarioMainApp()
         }
     }
 }
 
 @Composable
 fun UsuarioMainApp() {
+
+    Contorno()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
