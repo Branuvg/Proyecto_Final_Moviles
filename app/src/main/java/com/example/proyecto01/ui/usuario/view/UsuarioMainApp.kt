@@ -25,6 +25,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -70,46 +71,76 @@ fun UsuarioMainApp() {
 }
 
 
+
 @Composable
-fun ProfileDes(){
+fun ProfileDes() {
     val avatar = painterResource(id = R.drawable.perfil_pic)
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally)
-    {
-
-        Box (
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Box(
             Modifier
                 .fillMaxWidth()
                 .height(150.dp)
-        )
-        {
-            Image(painter = avatar,
+        ) {
+            Image(
+                painter = avatar,
                 contentDescription = null,
                 modifier = Modifier
                     .size(150.dp)
                     .align(Alignment.Center)
-                    .absoluteOffset(0.dp, 40.dp))
+                    .absoluteOffset(0.dp, 40.dp)
+            )
         }
 
-        Text(text = "Nombre",
+        Text(
+            text = "Nombre",
             style = TextStyle(
-                fontSize = 20.sp, fontWeight = FontWeight.Bold),
+                fontSize = 20.sp, fontWeight = FontWeight.Bold
+            ),
             modifier = Modifier.padding(50.dp)
         )
+
+        // Espacio entre el texto y los botones
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Botones de Log-in y Sign-in
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(
+                onClick = { /* nave*/ },
+                modifier = Modifier.width(120.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Gray,
+                    contentColor = Color.White
+                )
+            ) {
+                Text(text = "Log-in")
+            }
+
+            Button(
+                onClick = { /* nave*/ },
+                modifier = Modifier.width(120.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Gray,
+                    contentColor = Color.White
+                )
+            ) {
+                Text(text = "Sing-in")
+            }
+        }
     }
 }
 
 @Composable
-fun Menu(){
+fun Menu() {
     val not = painterResource(id = R.drawable.notificaciones)
     val emer = painterResource(id = R.drawable.emergencia)
     val yo = painterResource(id = R.drawable.perfil)
     val settings = painterResource(id = R.drawable.ajustes)
 
-
-    Column (Modifier.fillMaxWidth()
-    )
-    {
+    Column(Modifier.fillMaxWidth()) {
         Row {
             Image(
                 painter = yo,
@@ -125,7 +156,6 @@ fun Menu(){
                 modifier = Modifier.padding(20.dp)
             )
         }
-
 
         Row {
             Image(
@@ -159,7 +189,6 @@ fun Menu(){
             )
         }
 
-
         Row {
             Image(
                 painter = not,
@@ -177,6 +206,7 @@ fun Menu(){
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
