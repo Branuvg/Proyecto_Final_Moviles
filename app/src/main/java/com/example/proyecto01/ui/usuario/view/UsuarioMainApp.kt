@@ -43,6 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
 import com.example.proyecto01.ui.theme.Proyecto01Theme
@@ -58,14 +59,14 @@ class Usuario : ComponentActivity() {
 }
 
 @Composable
-fun UsuarioMainApp() {
+fun UsuarioMainApp(navController: NavController) {
     Contorno()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        ProfileDes()
+        ProfileDes(navController)
         Menu()
     }
 }
@@ -73,7 +74,7 @@ fun UsuarioMainApp() {
 
 
 @Composable
-fun ProfileDes() {
+fun ProfileDes(navController: NavController) {
     val avatar = painterResource(id = R.drawable.perfil_pic)
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -109,7 +110,7 @@ fun ProfileDes() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Button(
-                onClick = { /* nave*/ },
+                onClick = { navController.navigate("login") },
                 modifier = Modifier.width(120.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Gray,
@@ -120,7 +121,7 @@ fun ProfileDes() {
             }
 
             Button(
-                onClick = { /* nave*/ },
+                onClick = { navController.navigate("signin") },
                 modifier = Modifier.width(120.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Gray,
@@ -204,14 +205,5 @@ fun Menu() {
                 modifier = Modifier.padding(20.dp)
             )
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun UsuarioPreview() {
-    Proyecto01Theme {
-        UsuarioMainApp()
     }
 }

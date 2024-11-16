@@ -58,6 +58,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
+import com.example.proyecto01.ui.usuario.view.LoginScreen
+import com.example.proyecto01.ui.usuario.view.SignUpScreen
 import com.example.proyecto01.ui.usuario.view.Usuarios
 
 
@@ -155,8 +157,10 @@ fun Main() {
             composable("equipo") { EquipoMainApp(navController) }
             composable("lista") { ListaMainApp(navController) }
             composable("camara") { CamaraMainApp() }
-            composable("usuario") { UsuarioMainApp() }
+            composable("usuario") { UsuarioMainApp(navController) }
             composable("detalle") { DetalleMainApp() }
+            composable("login") { LoginScreen()  }
+            composable("signin") { SignUpScreen() }
         }
     }
 }
