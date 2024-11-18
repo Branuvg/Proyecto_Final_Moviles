@@ -26,16 +26,6 @@ import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 
-class Camara : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            //CamaraMainApp()
-        }
-    }
-}
-
 @Composable
 fun CamaraMainApp() {
 

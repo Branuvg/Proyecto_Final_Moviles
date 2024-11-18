@@ -35,15 +35,6 @@ import com.example.proyecto01.R
 import com.example.proyecto01.ui.equipo.view.EquipoMainApp
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 
-class Lista : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            //ListaMainApp()
-        }
-    }
-}
 
 @Composable
 fun ListaMainApp(navController: NavController) {

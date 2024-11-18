@@ -28,16 +28,6 @@ import androidx.compose.ui.unit.dp
 import com.example.proyecto01.Contorno
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 
-class Detalle : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            //DetalleMainApp()
-        }
-    }
-}
-
 @Composable
 fun DetalleMainApp() {
 

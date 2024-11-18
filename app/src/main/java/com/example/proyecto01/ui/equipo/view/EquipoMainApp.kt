@@ -24,16 +24,6 @@ import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 
-class Equipo : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            //EquipoMainApp(navController)
-
-        }
-    }
-}
 
 @Composable
 fun EquipoMainApp(navController: NavController) {

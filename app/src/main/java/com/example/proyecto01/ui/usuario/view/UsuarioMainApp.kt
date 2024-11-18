@@ -46,16 +46,6 @@ import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 
-class Usuario : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            //UsuarioMainApp()
-        }
-    }
-}
-
 @Composable
 fun UsuarioMainApp() {
     Contorno()
