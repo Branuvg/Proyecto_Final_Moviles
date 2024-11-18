@@ -61,9 +61,8 @@ import android.util.Log
 import com.example.proyecto01.ui.usuario.view.LoginScreen
 import com.example.proyecto01.ui.usuario.view.SignUpScreen
 import com.example.proyecto01.ui.usuario.view.Usuarios
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class MainActivity : ComponentActivity() {
     private lateinit var firestore: FirebaseFirestore
 
