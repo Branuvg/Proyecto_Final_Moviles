@@ -22,12 +22,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.proyecto01.Contorno
 import com.example.proyecto01.R
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 
 @Composable
-fun CamaraMainApp() {
+fun CamaraMainApp(navController: NavController) {
 
     Contorno()
 
@@ -68,6 +70,6 @@ fun CamaraMainApp() {
 @Composable
 fun CamaraPreview() {
     Proyecto01Theme {
-        CamaraMainApp()
+        CamaraMainApp(navController = rememberNavController())
     }
 }

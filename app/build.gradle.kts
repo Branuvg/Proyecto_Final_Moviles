@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(kotlin("script-runtime"))
     runtimeOnly(libs.androidx.material.icons.extended)
+
     implementation(libs.androidx.palette)
     implementation(libs.androidx.viewmodel)
     implementation(libs.androidx.navigation)
