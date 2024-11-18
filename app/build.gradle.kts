@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -59,7 +61,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.camera.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -67,9 +68,24 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.camera.core)
     implementation(libs.androidx.navigation.compose)
     implementation(kotlin("script-runtime"))
     runtimeOnly(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.palette)
+    implementation(libs.androidx.viewmodel)
+    implementation(libs.androidx.navigation)
+    implementation(libs.squareup.retrofit)
+    implementation(libs.squareup.gson)
+    implementation(libs.squareup.loggin)
+    implementation(libs.timber)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.icons)
+    implementation(libs.androidx.hilt.navigation)
 
 
 }
