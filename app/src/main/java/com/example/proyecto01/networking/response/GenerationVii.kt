@@ -1,0 +1,10 @@
+package com.example.proyecto01.networking.response
+
+
+import com.google.gson.annotations.SerializedName
+
+data class GenerationVii(
+    val icons: Icons,
+    @SerializedName("ultra-sun-ultra-moon")
+    val ultraSunUltraMoon: UltraSunUltraMoon
+)
