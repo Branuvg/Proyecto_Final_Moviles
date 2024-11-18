@@ -56,58 +56,58 @@ import com.example.proyecto01.ui.theme.Proyecto01Theme
 import com.example.proyecto01.ui.usuario.view.UsuarioMainApp
 
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             Proyecto01Theme {
-                Main()
+
+                val navController = rememberNavController()
+                val pantallaactual = remember { mutableStateOf("Equipo") }
+
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = {
+                                Text(
+                                    text = pantallaactual.value,
+                                    color = Color.White,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            },
+                            colors = TopAppBarDefaults.smallTopAppBarColors(
+                                containerColor = Color.Red
+                            )
+                        )
+                    },
+                    bottomBar = {
+                        Nav(navController,pantallaactual)
+                    }
+                ) { innerPadding ->
+                    NavHost(
+                        navController = navController,
+                        startDestination = "equipo",
+                        modifier = Modifier.padding(innerPadding)
+                    ) {
+                        composable("equipo") { EquipoMainApp(navController) }
+                        composable("lista") { ListaMainApp(navController) }
+                        composable("camara") { CamaraMainApp() }
+                        composable("usuario") { UsuarioMainApp() }
+                        composable("detalle") { DetalleMainApp() }
+                    }
+                }
             }
         }
     }
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Main() {
-    val navController = rememberNavController()
-    val pantallaactual = remember { mutableStateOf("Equipo") }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = pantallaactual.value,
-                        color = Color.White,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                },
-                colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = Color.Red
-                )
-            )
-        },
-        bottomBar = {
-            Nav(navController,pantallaactual)
-        }
-    ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = "equipo",
-            modifier = Modifier.padding(innerPadding)
-        ) {
-            composable("equipo") { EquipoMainApp(navController) }
-            composable("lista") { ListaMainApp(navController) }
-            composable("camara") { CamaraMainApp() }
-            composable("usuario") { UsuarioMainApp() }
-            composable("detalle") { DetalleMainApp() }
-        }
-    }
-}
+
 
 data class BottomNavItem(
     val titulo: String,
@@ -196,14 +196,5 @@ fun Contorno() {
                     .background(Color.Red)
             )
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun MainPreview() {
-    Proyecto01Theme {
-        Main()
     }
 }
