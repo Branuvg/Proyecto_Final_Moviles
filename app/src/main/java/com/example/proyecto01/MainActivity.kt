@@ -54,71 +54,17 @@ import com.example.proyecto01.ui.equipo.view.EquipoMainApp
 import com.example.proyecto01.ui.lista.view.ListaMainApp
 import com.example.proyecto01.ui.theme.Proyecto01Theme
 import com.example.proyecto01.ui.usuario.view.UsuarioMainApp
-import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.FirebaseFirestore
-import android.util.Log
-import com.example.proyecto01.ui.usuario.view.LoginScreen
-import com.example.proyecto01.ui.usuario.view.SignUpScreen
-import com.example.proyecto01.ui.usuario.view.Usuarios
 
 
 class MainActivity : ComponentActivity() {
-    private lateinit var firestore: FirebaseFirestore
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Inicializa Firebase
-        FirebaseApp.initializeApp(this)
-
-        // Inicializa Firestore
-        firestore = FirebaseFirestore.getInstance()
-
-        // Ejemplo: Guardar un usuario
-        val user = Usuarios.User(
-            username = "usuarioEjemplo",
-            password = "password123",
-            numbers = listOf(1, 2, 3, 4, 5, 6)
-        )
-        saveUser(user)
-
+        enableEdgeToEdge()
         setContent {
             Proyecto01Theme {
                 Main()
             }
         }
-    }
-
-    // Función para guardar usuario en Firestore
-    private fun saveUser(user: Usuarios.User) {
-        firestore.collection("users")
-            .document(user.username)
-            .set(user)
-            .addOnSuccessListener {
-                Log.d("Firestore", "Usuario guardado exitosamente.")
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Error al guardar el usuario", e)
-            }
-    }
-
-    // Función para obtener un usuario desde Firestore
-    private fun getUser(username: String) {
-        firestore.collection("users")
-            .document(username)
-            .get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val user = document.toObject(Usuarios.User::class.java)
-                    Log.d("Firestore", "Usuario obtenido: $user")
-                } else {
-                    Log.d("Firestore", "No se encontró el usuario.")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Error al obtener el usuario", e)
-            }
     }
 }
 
@@ -157,10 +103,8 @@ fun Main() {
             composable("equipo") { EquipoMainApp(navController) }
             composable("lista") { ListaMainApp(navController) }
             composable("camara") { CamaraMainApp() }
-            composable("usuario") { UsuarioMainApp(navController) }
+            composable("usuario") { UsuarioMainApp() }
             composable("detalle") { DetalleMainApp() }
-            composable("login") { LoginScreen()  }
-            composable("signin") { SignUpScreen() }
         }
     }
 }
