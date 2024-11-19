@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.proyecto01"
-    compileSdk = 34
+    namespace = "android.azadevs.pokedex"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.proyecto01"
+        applicationId = "android.azadevs.pokedex"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -26,8 +26,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -68,12 +67,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    implementation(libs.androidx.camera.core)
-    implementation(libs.androidx.navigation.compose)
-    implementation(kotlin("script-runtime"))
-    runtimeOnly(libs.androidx.material.icons.extended)
-
     implementation(libs.androidx.palette)
     implementation(libs.androidx.viewmodel)
     implementation(libs.androidx.navigation)
@@ -87,6 +80,8 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.icons)
     implementation(libs.androidx.hilt.navigation)
-
-
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.navigation.compose)
+    implementation(kotlin("script-runtime"))
+    runtimeOnly(libs.androidx.material.icons.extended)
 }
