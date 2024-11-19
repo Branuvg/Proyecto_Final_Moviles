@@ -57,11 +57,6 @@ import coil3.request.allowHardware
 import coil3.request.crossfade
 import coil3.toBitmap
 
-/**
- * Created by : Azamat Kalmurzaev
- * 04/11/24
- */
-
 @Composable
 fun PokemonListScreen(
     navController: NavController,

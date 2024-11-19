@@ -6,11 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-/**
- * Created by : Azamat Kalmurzaev
- * 04/11/24
- */
-
 interface PokeApi {
 
     @GET("pokemon")

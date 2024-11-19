@@ -60,10 +60,6 @@ import coil3.request.crossfade
 import java.util.Locale
 import kotlin.math.round
 
-/**
- * Created by : Azamat Kalmurzaev
- * 06/11/24
- */
 @Composable
 fun PokemonDetailScreen(
     modifier: Modifier = Modifier,

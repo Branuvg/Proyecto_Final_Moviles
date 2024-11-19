@@ -11,10 +11,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-/**
- * Created by : Azamat Kalmurzaev
- * 04/11/24
- */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {

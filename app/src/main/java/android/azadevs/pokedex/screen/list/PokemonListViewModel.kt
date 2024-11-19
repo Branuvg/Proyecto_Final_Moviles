@@ -16,10 +16,6 @@ import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
 
-/**
- * Created by : Azamat Kalmurzaev
- * 04/11/24
- */
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(
     private val repository: PokemonRepository

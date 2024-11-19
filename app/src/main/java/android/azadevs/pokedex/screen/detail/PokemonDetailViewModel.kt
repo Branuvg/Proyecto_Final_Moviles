@@ -10,10 +10,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * Created by : Azamat Kalmurzaev
- * 06/11/24
- */
 @HiltViewModel
 class PokemonDetailViewModel @Inject constructor(
     private val repository: PokemonRepository
