@@ -8,10 +8,6 @@ import dagger.hilt.android.scopes.ActivityScoped
 import java.io.IOException
 import javax.inject.Inject
 
-/**
- * Created by : Azamat Kalmurzaev
- * 04/11/24
- */
 @ActivityScoped
 class PokemonRepository @Inject constructor(
     private val api: PokeApi
