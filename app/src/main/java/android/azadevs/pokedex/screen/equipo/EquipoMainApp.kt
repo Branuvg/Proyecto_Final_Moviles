@@ -38,7 +38,7 @@ fun EquipoMainApp(navController: NavController) {
                     modifier = Modifier
                         .size(125.dp)
                         .clickable {
-                            navController.navigate("detalle")
+                            navController.navigate("")
                         }
                 )
             }
