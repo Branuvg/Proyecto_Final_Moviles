@@ -1,1 +1,1 @@
-Parte 1 https://youtu.be/NM4H0Hm0Mc4
+https://youtube.com/shorts/uYtxIRlBRi4?feature=share
