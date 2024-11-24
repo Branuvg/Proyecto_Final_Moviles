@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -91,7 +92,8 @@ fun PokemonListScreen(
 
 @Composable
 fun SearchBar(
-    modifier: Modifier = Modifier, hint: String = "",
+    modifier: Modifier = Modifier,
+    hint: String = "",
     onSearch: (String) -> Unit = {}
 ) {
     var text by remember {
@@ -218,7 +220,7 @@ fun PokedexEntry(
             )
             Text(
                 text = entry.name,
-                fontFamily = RobotoCondensed,
+                fontFamily = FontFamily.Default,
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -231,7 +233,7 @@ fun PokedexEntry(
 @Composable
 fun RetrySection(error: String, onRetry: () -> Unit) {
     Column {
-        Text(text = error, fontSize = 20.sp, fontFamily = Roboto)
+        Text(text = error, fontSize = 20.sp, fontFamily = FontFamily.Default)
         Spacer(modifier = Modifier.height(8.dp))
         Button(
             onClick = { onRetry.invoke() },
