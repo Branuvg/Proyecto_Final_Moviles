@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.googleService)
 }
 
 android {
@@ -60,6 +61,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -84,4 +87,10 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(kotlin("script-runtime"))
     runtimeOnly(libs.androidx.material.icons.extended)
+    implementation(libs.firebaseAuth)
+    implementation(libs.firebaseStore)
+    implementation(libs.androidx.material)
+
+
+
 }

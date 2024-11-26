@@ -27,6 +27,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.AddToHomeScreen
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -146,7 +147,8 @@ fun PokemonDetailTopSection(
                 .offset(3.dp, 8.dp)
                 .clickable {
                     navController.popBackStack()
-                })
+                }
+        )
     }
 }
 

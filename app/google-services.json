@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "199372053214",
+    "project_id": "usersforpdex",
+    "storage_bucket": "usersforpdex.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199372053214:android:2e319a4c9203bedbf5004f",
+        "android_client_info": {
+          "package_name": "android.azadevs.pokedex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxsuPXiOJ90SXlxezODQMvjN3hQnLREMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

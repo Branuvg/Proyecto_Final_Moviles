@@ -1,10 +1,11 @@
 package android.azadevs.pokedex
 
+import SignUpScreen
 import android.azadevs.pokedex.screen.camara.CamaraMainApp
 import android.azadevs.pokedex.screen.detail.PokemonDetailScreen
 import android.azadevs.pokedex.screen.equipo.EquipoMainApp
 import android.azadevs.pokedex.screen.list.PokemonListScreen
-import android.azadevs.pokedex.screen.usuario.UsuarioMainApp
+import android.azadevs.pokedex.screen.list.PokemonListViewModel
 import android.azadevs.pokedex.ui.theme.PokédexTheme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -51,12 +52,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.proyecto01.ui.usuario.view.LoginScreen
+import com.example.proyecto01.ui.usuario.view.UsuarioMainApp
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -98,20 +103,64 @@ class MainActivity : ComponentActivity() {
                         Nav(navController,pantallaactual)
                     }
                 ) { paddingValues ->
+
+                    val startDestination = if (FirebaseAuth.getInstance().currentUser != null) {
+                        "main_graph"
+                    } else {
+                        "login"
+                    }
+
                     NavHost(
                         navController = navController,
                         startDestination = "equipo",
+                        route = "main_graph",
                         modifier = Modifier.padding(paddingValues)
                     ) {
-                        composable("equipo") { EquipoMainApp(navController) }
-                        composable(route = "pokemon_list_screen") {
+                        composable("equipo") {
+                            val viewModel: PokemonListViewModel = hiltViewModel(navController.getBackStackEntry("main_graph"))
+                            EquipoMainApp(
+                                navController = navController,
+                                viewModel
+                            )
+                        }
+                        composable(route = "lista") {
+                            val viewModel: PokemonListViewModel = hiltViewModel(navController.getBackStackEntry("main_graph"))
                             PokemonListScreen(
                                 navController = navController,
-                                topPadding = paddingValues.calculateTopPadding()
+                                viewModel
                             )
                         }
                         composable("camara") {CamaraMainApp()}
-                        composable("usuario") {UsuarioMainApp()}
+                        composable("login") {
+                            LoginScreen(
+                                onLoginSuccess = { userName ->
+                                    navController.navigate("usuario") {
+                                        popUpTo("login") { inclusive = true }
+                                    }
+                                },
+                                onSignUpClick = {
+                                    navController.navigate("signin")
+                                }
+                            )
+                        }
+
+
+                        composable("signin") {
+                            SignUpScreen(
+                                onSignUpSuccess = {
+                                    navController.navigate("login") {
+                                        popUpTo("signin") { inclusive = true } // Elimina la pantalla de registro del stack
+                                    }
+                                },
+                                onLoginClick = {
+                                    navController.navigate("login")
+                                }
+                            )
+                        }
+
+
+                        composable("usuario") {UsuarioMainApp(navController)}
+
                         composable(
                             route = "pokemon_detail_screen/{dominantColor}/{pokemonName}",
                             arguments = listOf(
@@ -155,7 +204,7 @@ data class BottomNavItem(
 fun Nav(navController: NavController, pantallaactual: MutableState<String>) {
     val items = listOf(
         BottomNavItem("Equipo", Icons.Filled.Home, Icons.Outlined.Home),
-        BottomNavItem("Pokemon_list_screen", Icons.Filled.Search, Icons.Outlined.Search),
+        BottomNavItem("Lista", Icons.Filled.Search, Icons.Outlined.Search),
         BottomNavItem("Camara", Icons.Filled.Place, Icons.Outlined.Place),
         BottomNavItem("Usuario", Icons.Filled.Person, Icons.Outlined.Person)
     )
