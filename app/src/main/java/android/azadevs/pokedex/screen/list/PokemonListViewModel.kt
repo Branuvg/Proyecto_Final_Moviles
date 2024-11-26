@@ -195,50 +195,15 @@ class PokemonListViewModel @Inject constructor(
 
                         // Fake types asignados manualmente, incluyendo Pokémon con doble tipo
                         val fakeTypes = when (number.toInt()) {
-                            // Normal
-                            in listOf(16, 19, 52, 83, 84, 108, 113, 115, 128, 132) -> listOf("Normal")
+                            // Primera Generación
+                            1 -> listOf("Grass", "Poison")                                                                              2 -> listOf("Grass", "Poison") 3 -> listOf("Grass", "Poison") 4 -> listOf("Fire") 5 -> listOf("Fire") 6 -> listOf("Fire", "Flying") 7 -> listOf("Water") 8 -> listOf("Water") 9 -> listOf("Water") 10 -> listOf("Bug") 11 -> listOf("Bug") 12 -> listOf("Bug", "Flying") 13 -> listOf("Bug", "Poison") 14 -> listOf("Bug", "Poison") 15 -> listOf("Bug", "Poison") 16 -> listOf("Normal", "Flying") 17 -> listOf("Normal", "Flying") 18 -> listOf("Normal", "Flying") 19 -> listOf("Normal") 20 -> listOf("Normal") 21 -> listOf("Normal", "Flying") 22 -> listOf("Normal", "Flying") 23 -> listOf("Poison") 24 -> listOf("Poison") 25 -> listOf("Electric") 26 -> listOf("Electric") 27 -> listOf("Ground") 28 -> listOf("Ground") 29 -> listOf("Poison") 30 -> listOf("Poison") 31 -> listOf("Poison", "Ground") 32 -> listOf("Poison") 33 -> listOf("Poison") 34 -> listOf("Poison", "Ground") 35 -> listOf("Fairy") 36 -> listOf("Fairy") 37 -> listOf("Fire") 38 -> listOf("Fire") 39 -> listOf("Normal", "Fairy") 40 -> listOf("Normal", "Fairy") 41 -> listOf("Poison", "Flying") 42 -> listOf("Poison", "Flying") 43 -> listOf("Grass", "Poison") 44 -> listOf("Grass", "Poison") 45 -> listOf("Grass", "Poison") 46 -> listOf("Bug", "Grass") 47 -> listOf("Bug", "Grass") 48 -> listOf("Bug", "Poison") 49 -> listOf("Bug", "Poison") 50 -> listOf("Ground") 51 -> listOf("Ground") 52 -> listOf("Normal") 53 -> listOf("Normal") 54 -> listOf("Water") 55 -> listOf("Water") 56 -> listOf("Fighting") 57 -> listOf("Fighting") 58 -> listOf("Fire") 59 -> listOf("Fire") 60 -> listOf("Water") 61 -> listOf("Water") 62 -> listOf("Water", "Fighting") 63 -> listOf("Psychic") 64 -> listOf("Psychic") 65 -> listOf("Psychic") 66 -> listOf("Fighting") 67 -> listOf("Fighting") 68 -> listOf("Fighting") 69 -> listOf("Grass", "Poison") 70 -> listOf("Grass", "Poison") 71 -> listOf("Grass", "Poison") 72 -> listOf("Water", "Poison") 73 -> listOf("Water", "Poison") 74 -> listOf("Rock", "Ground") 75 -> listOf("Rock", "Ground") 76 -> listOf("Rock", "Ground") 77 -> listOf("Fire") 78 -> listOf("Fire") 79 -> listOf("Water", "Psychic") 80 -> listOf("Water", "Psychic") 81 -> listOf("Electric", "Steel") 82 -> listOf("Electric", "Steel") 83 -> listOf("Normal", "Flying") 84 -> listOf("Normal", "Flying") 85 -> listOf("Normal", "Flying") 86 -> listOf("Water") 87 -> listOf("Water", "Ice") 88 -> listOf("Poison") 89 -> listOf("Poison") 90 -> listOf("Water") 91 -> listOf("Water", "Ice") 92 -> listOf("Ghost", "Poison") 93 -> listOf("Ghost", "Poison") 94 -> listOf("Ghost", "Poison") 95 -> listOf("Rock", "Ground") 96 -> listOf("Psychic") 97 -> listOf("Psychic") 98 -> listOf("Water") 99 -> listOf("Water") 100 -> listOf("Electric") 101 -> listOf("Electric") 102 -> listOf("Grass", "Psychic") 103 -> listOf("Grass", "Psychic") 104 -> listOf("Ground") 105 -> listOf("Ground") 106 -> listOf("Fighting") 107 -> listOf("Fighting") 108 -> listOf("Normal") 109 -> listOf("Poison") 110 -> listOf("Poison") 111 -> listOf("Ground", "Rock") 112 -> listOf("Ground", "Rock") 113 -> listOf("Normal") 114 -> listOf("Grass") 115 -> listOf("Normal") 116 -> listOf("Water") 117 -> listOf("Water") 118 -> listOf("Water") 119 -> listOf("Water") 120 -> listOf("Water") 121 -> listOf("Water", "Psychic") 122 -> listOf("Psychic", "Fairy") 123 -> listOf("Bug", "Flying") 124 -> listOf("Ice", "Psychic") 125 -> listOf("Electric") 126 -> listOf("Fire") 127 -> listOf("Bug") 128 -> listOf("Normal") 129 -> listOf("Water") 130 -> listOf("Water", "Flying") 131 -> listOf("Water", "Ice") 132 -> listOf("Normal") 133 -> listOf("Normal") 134 -> listOf("Water") 135 -> listOf("Electric") 136 -> listOf("Fire") 137 -> listOf("Normal") 138 -> listOf("Rock", "Water") 139 -> listOf("Rock", "Water") 140 -> listOf("Rock", "Water") 141 -> listOf("Rock", "Water") 142 -> listOf("Rock", "Flying") 143 -> listOf("Normal") 144 -> listOf("Ice", "Flying") 145 -> listOf("Electric", "Flying") 146 -> listOf("Fire", "Flying") 147 -> listOf("Dragon") 148 -> listOf("Dragon") 149 -> listOf("Dragon", "Flying") 150 -> listOf("Psychic") 151 -> listOf("Psychic")
+                            152 -> listOf("Grass")                                                                                      153 -> listOf("Grass") 154 -> listOf("Grass") 155 -> listOf("Fire") 156 -> listOf("Fire") 157 -> listOf("Fire") 158 -> listOf("Water") 159 -> listOf("Water") 160 -> listOf("Water") 161 -> listOf("Normal") 162 -> listOf("Normal") 163 -> listOf("Normal", "Flying") 164 -> listOf("Normal", "Flying") 165 -> listOf("Bug", "Flying") 166 -> listOf("Bug", "Flying") 167 -> listOf("Bug", "Poison") 168 -> listOf("Bug", "Poison") 169 -> listOf("Poison", "Flying") 170 -> listOf("Water", "Electric") 171 -> listOf("Water", "Electric") 172 -> listOf("Electric") 173 -> listOf("Fairy") 174 -> listOf("Normal", "Fairy") 175 -> listOf("Fairy") 176 -> listOf("Fairy", "Flying") 177 -> listOf("Psychic", "Flying") 178 -> listOf("Psychic", "Flying") 179 -> listOf("Electric") 180 -> listOf("Electric") 181 -> listOf("Electric") 182 -> listOf("Grass") 183 -> listOf("Water", "Fairy") 184 -> listOf("Water", "Fairy") 185 -> listOf("Rock") 186 -> listOf("Water") 187 -> listOf("Grass", "Flying") 188 -> listOf("Grass", "Flying") 189 -> listOf("Grass", "Flying") 190 -> listOf("Normal") 191 -> listOf("Grass") 192 -> listOf("Grass") 193 -> listOf("Bug", "Flying") 194 -> listOf("Water", "Ground") 195 -> listOf("Water", "Ground") 196 -> listOf("Psychic") 197 -> listOf("Dark") 198 -> listOf("Dark", "Flying") 199 -> listOf("Water", "Psychic") 200 -> listOf("Ghost") 201 -> listOf("Psychic") 202 -> listOf("Psychic") 203 -> listOf("Normal", "Psychic") 204 -> listOf("Bug") 205 -> listOf("Bug", "Steel") 206 -> listOf("Normal") 207 -> listOf("Ground", "Flying") 208 -> listOf("Steel", "Ground") 209 -> listOf("Fairy") 210 -> listOf("Fairy") 211 -> listOf("Water", "Poison") 212 -> listOf("Bug", "Steel") 213 -> listOf("Bug", "Rock") 214 -> listOf("Bug", "Fighting") 215 -> listOf("Dark", "Ice") 216 -> listOf("Normal") 217 -> listOf("Normal") 218 -> listOf("Fire") 219 -> listOf("Fire", "Rock") 220 -> listOf("Ice", "Ground") 221 -> listOf("Ice", "Ground") 222 -> listOf("Water", "Rock") 223 -> listOf("Water") 224 -> listOf("Water") 225 -> listOf("Ice", "Flying") 226 -> listOf("Water", "Flying") 227 -> listOf("Steel", "Flying") 228 -> listOf("Dark", "Fire") 229 -> listOf("Dark", "Fire") 230 -> listOf("Water", "Dragon") 231 -> listOf("Ground") 232 -> listOf("Ground") 233 -> listOf("Normal") 234 -> listOf("Normal") 235 -> listOf("Normal") 236 -> listOf("Fighting") 237 -> listOf("Fighting") 238 -> listOf("Ice", "Psychic") 239 -> listOf("Electric") 240 -> listOf("Fire") 241 -> listOf("Normal") 242 -> listOf("Normal") 243 -> listOf("Electric") 244 -> listOf("Fire") 245 -> listOf("Water") 246 -> listOf("Rock", "Ground") 247 -> listOf("Rock", "Ground") 248 -> listOf("Rock", "Dark") 249 -> listOf("Psychic", "Flying") 250 -> listOf("Fire", "Flying") 251 -> listOf("Psychic", "Grass")
+                            252 -> listOf("Grass")                                                                                      253 -> listOf("Grass") 254 -> listOf("Grass") 255 -> listOf("Fire") 256 -> listOf("Fire", "Fighting") 257 -> listOf("Fire", "Fighting") 258 -> listOf("Water") 259 -> listOf("Water", "Ground") 260 -> listOf("Water", "Ground") 261 -> listOf("Dark") 262 -> listOf("Dark") 263 -> listOf("Normal") 264 -> listOf("Normal") 265 -> listOf("Bug") 266 -> listOf("Bug") 267 -> listOf("Bug", "Flying") 268 -> listOf("Bug") 269 -> listOf("Bug", "Poison") 270 -> listOf("Water", "Grass") 271 -> listOf("Water", "Grass") 272 -> listOf("Water", "Grass") 273 -> listOf("Grass") 274 -> listOf("Grass", "Dark") 275 -> listOf("Grass", "Dark") 276 -> listOf("Normal", "Flying") 277 -> listOf("Normal", "Flying") 278 -> listOf("Water", "Flying") 279 -> listOf("Water", "Flying") 280 -> listOf("Psychic", "Fairy") 281 -> listOf("Psychic", "Fairy") 282 -> listOf("Psychic", "Fairy") 283 -> listOf("Bug", "Water") 284 -> listOf("Bug", "Flying") 285 -> listOf("Grass") 286 -> listOf("Grass", "Fighting") 287 -> listOf("Normal") 288 -> listOf("Normal") 289 -> listOf("Normal") 290 -> listOf("Bug", "Ground") 291 -> listOf("Bug", "Flying") 292 -> listOf("Bug", "Ghost") 293 -> listOf("Normal") 294 -> listOf("Normal") 295 -> listOf("Normal")
 
-                            // Fire
-                            in listOf(4, 37, 58, 77, 126, 136, 155, 218, 228) -> listOf("Fire")
 
-                            // Water
-                            in listOf(7, 54, 60, 72, 79, 86, 90, 98, 116, 118) -> listOf("Water")
-
-                            // Grass
-                            in listOf(1, 43, 69, 102, 114, 152, 187, 188, 191, 252) -> listOf("Grass")
-
-                            // Electric
-                            in listOf(25, 81, 100, 125, 135, 145, 179, 180, 181, 239) -> listOf("Electric")
-
-                            // Ice
-                            in listOf(87, 91, 124, 131, 144, 215, 220, 221, 225, 361) -> listOf("Ice")
-
-                            // Fighting
-                            in listOf(56, 57, 66, 67, 68, 106, 107, 214, 236, 237) -> listOf("Fighting")
-
-                            // Poison
-                            in listOf(23, 24, 29, 32, 41, 88, 109, 48, 72, 316) -> listOf("Poison")
-
-                            // Ground
-                            in listOf(50, 51, 27, 28, 104, 105, 231, 232, 194, 195) -> listOf("Ground")
-
-                            // Flying
-                            in listOf(16, 21, 41, 83, 84, 123, 130, 142, 144, 145) -> listOf("Flying")
-
-                            // Pokémon con doble tipo
-                            6 -> listOf("Fire", "Flying")     // Charizard
-                            3 -> listOf("Grass", "Poison")   // Venusaur
-                            9 -> listOf("Water", "Fighting") // Blastoise
-                            12 -> listOf("Bug", "Flying")    // Butterfree
-                            18 -> listOf("Normal", "Flying") // Pidgeot
-                            59 -> listOf("Fire", "Rock")     // Arcanine
-                            65 -> listOf("Psychic", "Fighting") // Alakazam (supuesto ejemplo)
-                            94 -> listOf("Ghost", "Poison")  // Gengar
-                            149 -> listOf("Dragon", "Flying") // Dragonite
-                            143 -> listOf("Normal", "Ground") // Snorlax (supuesto ejemplo)
-
-                            else -> listOf("Unknown") // Por defecto
+                            else -> listOf("Unknown")
                         }
+
 
                         PokedexListEntry(
                             number = number.toInt(),
