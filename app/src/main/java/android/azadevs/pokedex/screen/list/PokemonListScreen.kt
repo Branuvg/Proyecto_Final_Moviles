@@ -85,12 +85,10 @@ fun PokemonListScreen(
                 hint = "Search Pokémon...",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(12.dp)
             ) { query ->
                 viewModel.searchPokemonList(query)
             }
-
-            Spacer(modifier = Modifier.height(8.dp))
 
             // Filtro por tipo
             DropdownFilter(
@@ -155,7 +153,11 @@ fun DropdownFilter(
 ) {
     var expanded by remember { mutableStateOf(false) }
     var selectedType by remember { mutableStateOf("") }
-    val types = listOf("All", "Fire", "Water", "Grass", "Electric", "Rock", "Flying")
+    val types = listOf(
+        "All", "Normal", "Fire", "Water", "Grass", "Electric", "Ice",
+        "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug",
+        "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"
+    )
 
     Box(modifier = modifier) {
         OutlinedTextField(
@@ -163,7 +165,9 @@ fun DropdownFilter(
             onValueChange = {},
             readOnly = true,
             modifier = Modifier
+                .align(alignment = Alignment.Center)
                 .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 6.dp)
                 .clickable { expanded = true },
             label = { Text("Filter by Type") },
             trailingIcon = {
