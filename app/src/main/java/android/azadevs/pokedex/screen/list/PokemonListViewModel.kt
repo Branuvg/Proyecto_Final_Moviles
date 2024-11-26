@@ -196,6 +196,7 @@ class PokemonListViewModel @Inject constructor(
                         }
                         val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png"
 
+                        //aaaaa
                         // Inicializar tipos directamente con un valor vacío o ficticio
                         PokedexListEntry(
                             number = number.toInt(),
