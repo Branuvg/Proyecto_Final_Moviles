@@ -1,5 +1,7 @@
 package android.azadevs.pokedex
 
+import ChangePasswordScreen
+import EditUserNameScreen
 import SignUpScreen
 
 import android.azadevs.pokedex.screen.camara.CameraScreen
@@ -123,6 +125,12 @@ class MainActivity : ComponentActivity() {
                                 navController = navController,
                                 viewModel
                             )
+                        }
+                        composable("edit_username") {
+                            EditUserNameScreen(onBack = { navController.popBackStack() })
+                        }
+                        composable("change_password") {
+                            ChangePasswordScreen(onBack = { navController.popBackStack() })
                         }
                         composable(route = "lista") {
                             val viewModel: PokemonListViewModel = hiltViewModel(navController.getBackStackEntry("main_graph"))

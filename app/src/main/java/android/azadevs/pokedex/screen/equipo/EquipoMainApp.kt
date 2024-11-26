@@ -2,6 +2,7 @@ package android.azadevs.pokedex.screen.equipo
 
 import android.azadevs.pokedex.data.models.PokedexListEntry
 import android.azadevs.pokedex.screen.list.PokemonListViewModel
+import android.azadevs.pokedex.screen.list.RetrySection
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -62,10 +63,13 @@ fun EquipoMainApp(
         // Cargar los últimos 6 Pokémon al iniciar la pantalla
         LaunchedEffect(Unit) {
             viewModel.loadLastSixPokemon()
+            println("Loaded Pokemon: ${viewModel.pokemonListState.value.selectedPokemonList}")
         }
 
         Column {
             Spacer(modifier = Modifier.height(30.dp))
+
+            // Mostrar la lista de Pokémon
             PokemonList(
                 navController = navController,
                 viewModel = viewModel
@@ -74,15 +78,14 @@ fun EquipoMainApp(
     }
 }
 
-
 @Composable
-fun PokemonList(navController: NavController,
-                viewModel: PokemonListViewModel = hiltViewModel()) {
-
+fun PokemonList(
+    navController: NavController,
+    viewModel: PokemonListViewModel = hiltViewModel()
+) {
     val pokemonState by remember {
         viewModel.pokemonListState
     }
-
 
     LazyColumn {
         val itemCount = if (pokemonState.selectedPokemonList.size % 2 == 0) {
@@ -101,6 +104,7 @@ fun PokemonList(navController: NavController,
             )
         }
     }
+
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         if (pokemonState.isLoading) {
             CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
@@ -120,11 +124,11 @@ fun PokedexEntry(
     modifier: Modifier = Modifier,
     viewModel: PokemonListViewModel = hiltViewModel()
 ) {
-
     val defaultDominantColor = MaterialTheme.colorScheme.surface
     var dominantColor by remember {
         mutableStateOf(defaultDominantColor)
     }
+
     Box(
         modifier = modifier
             .shadow(5.dp, RoundedCornerShape(10.dp))
@@ -138,8 +142,15 @@ fun PokedexEntry(
                 )
             )
             .clickable {
-                navController.navigate("pokemon_detail_screen/${dominantColor.toArgb()}/${entry.name}")
-                println("Pokemon Details -> Number: ${entry.number}, Name: ${entry.name}, Image URL: ${entry.imageUrl}")
+                // Validación antes de navegar
+                val color = dominantColor.toArgb()
+                val name = entry.name
+
+                if (name.isNotEmpty()) {
+                    navController.navigate("pokemon_detail_screen/$color/$name")
+                } else {
+                    println("Error: Nombre del Pokémon no es válido.")
+                }
             },
         contentAlignment = Alignment.Center
     ) {
@@ -170,20 +181,6 @@ fun PokedexEntry(
 }
 
 @Composable
-fun RetrySection(error: String, onRetry: () -> Unit) {
-    Column {
-        Text(text = error, fontSize = 20.sp, fontFamily = FontFamily.Default)
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = { onRetry.invoke() },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text(text = "Retry")
-        }
-    }
-}
-
-@Composable
 fun PokedexRow(
     rowIndex: Int,
     entries: List<PokedexListEntry>,
@@ -208,8 +205,8 @@ fun PokedexRow(
         }
         Spacer(modifier = Modifier.height(16.dp))
     }
-
 }
+
 
 //@Composable
 //fun EquipoMainApp(navController: NavController) {
