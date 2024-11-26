@@ -107,7 +107,7 @@ fun PokemonList(
 
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         if (pokemonState.isLoading) {
-            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            //CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
         }
         if (pokemonState.error.isNotEmpty()) {
             RetrySection(error = pokemonState.error) {
