@@ -93,7 +93,7 @@ fun UsuarioMainApp(navController: NavController) {
         } else {
             ProfileDes(navController)
         }
-        Menu()
+        Menu(navController)
     }
 }
 
@@ -206,75 +206,53 @@ fun ProfileDes(navController: NavController) {
 }
 
 @Composable
-fun Menu() {
-    val not = painterResource(id = R.drawable.notificaciones)
+fun Menu(navController: NavController) { // Se agrega navController como parámetro
     val emer = painterResource(id = R.drawable.emergencia)
     val yo = painterResource(id = R.drawable.perfil)
-    val settings = painterResource(id = R.drawable.ajustes)
 
-    Column(Modifier.fillMaxWidth()) {
-        Row {
+    Column(Modifier.fillMaxWidth().padding(16.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+                .clickable { navController.navigate("edit_username") }, // Navegación
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Image(
                 painter = yo,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(60.dp)
-                    .padding(10.dp)
+                    .size(40.dp)
+                    .padding(end = 8.dp)
             )
-
             Text(
-                text = "Editar Perfil",
-                style = TextStyle(fontSize = 20.sp),
-                modifier = Modifier.padding(20.dp)
+                text = "Edit Username",
+                style = MaterialTheme.typography.bodyLarge
             )
         }
 
-        Row {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+                .clickable { navController.navigate("change_password") }, // Navegación
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Image(
                 painter = emer,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(60.dp)
-                    .padding(10.dp)
+                    .size(40.dp)
+                    .padding(end = 8.dp)
             )
-
             Text(
-                text = "Reset Password",
-                style = TextStyle(fontSize = 20.sp),
-                modifier = Modifier.padding(20.dp)
-            )
-        }
-
-        Row {
-            Image(
-                painter = settings,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(60.dp)
-                    .padding(10.dp)
-            )
-
-            Text(
-                text = "Ajustes",
-                style = TextStyle(fontSize = 20.sp),
-                modifier = Modifier.padding(20.dp)
-            )
-        }
-
-        Row {
-            Image(
-                painter = not,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(60.dp)
-                    .padding(10.dp)
-            )
-
-            Text(
-                text = "Notificaciones",
-                style = TextStyle(fontSize = 20.sp),
-                modifier = Modifier.padding(20.dp)
+                text = "Change Password",
+                style = MaterialTheme.typography.bodyLarge
             )
         }
     }
 }
+
+
+
+

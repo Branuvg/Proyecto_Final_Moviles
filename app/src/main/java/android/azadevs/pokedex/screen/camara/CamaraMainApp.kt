@@ -29,64 +29,117 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 
+//hola
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+
+
+
+
+import android.Manifest
+import android.content.pm.PackageManager
+
+import androidx.activity.compose.rememberLauncherForActivityResult
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+
 @Composable
-fun CamaraMainApp() {
-    // Variable para almacenar la imagen capturada
+fun CameraScreen() {
+    val context = LocalContext.current
+
+    // Estado para almacenar la imagen capturada
     var capturedImage by remember { mutableStateOf<Bitmap?>(null) }
 
-    // Configurar el lanzador para iniciar la cámara
+    // Estado para controlar si se tiene permiso de cámara
+    var hasCameraPermission by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        )
+    }
+
+    // Lanzador para solicitar permisos de cámara
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        hasCameraPermission = granted
+    }
+
+    // Lanzador para la cámara
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicturePreview()
     ) { bitmap ->
-        // Guardar la imagen capturada
-        capturedImage = bitmap
+        if (bitmap != null) {
+            capturedImage = bitmap
+        }
     }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Botón para abrir la cámara
-        IconButton(
-            onClick = {
-                cameraLauncher.launch(null) // Se usa null porque no necesitas un URI para TakePicturePreview
-            },
+        // Mostrar la imagen capturada o un mensaje
+        Box(
             modifier = Modifier
-                .size(64.dp)
+                .fillMaxWidth()
+                .height(300.dp)
+                .padding(16.dp)
+                .border(2.dp, Color.Gray),
+            contentAlignment = Alignment.Center
         ) {
-            Icon(
-                imageVector = androidx.compose.material.icons.Icons.Default.Camera,
-                contentDescription = "Abrir cámara",
-                //tint = MaterialTheme.colors.primary
+            capturedImage?.let { bitmap ->
+                Image(
+                    bitmap = bitmap.asImageBitmap(),
+                    contentDescription = "Imagen capturada",
+                    modifier = Modifier.fillMaxSize()
+                )
+            } ?: Text(
+                text = "¡Captura una imagen!",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Gray
             )
         }
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Mostrar la imagen capturada o un texto predeterminado
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .border(2.dp, Color.Gray),
-            contentAlignment = Alignment.Center
-        ) {
-            if (capturedImage != null) {
-                Image(
-                    bitmap = capturedImage!!.asImageBitmap(),
-                    contentDescription = "Imagen capturada",
-                    modifier = Modifier.fillMaxSize()
-                )
-            } else {
-                Text(text = "Pokémon", modifier = Modifier.align(Alignment.Center))
+        // Botón para abrir la cámara
+        Button(
+            onClick = {
+                if (hasCameraPermission) {
+                    cameraLauncher.launch(null)
+                } else {
+                    // Solicitar permisos si no se tienen
+                    permissionLauncher.launch(Manifest.permission.CAMERA)
+                }
             }
+        ) {
+            Icon(
+                imageVector = androidx.compose.material.icons.Icons.Default.Camera,
+                contentDescription = "Abrir cámara"
+            )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        if (!hasCameraPermission) {
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Se necesita acceso a la cámara para capturar imágenes.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.error
+            )
+        }
     }
 }
-
