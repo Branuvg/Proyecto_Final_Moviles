@@ -133,7 +133,7 @@ class PokemonListViewModel @Inject constructor(
                     // Crear objetos PokedexListEntry usando solo el número
                     PokedexListEntry(
                         number = id,
-                        name = "Pokemon $id", // Puedes reemplazar esto con un nombre real si tienes una API
+                        name = cachedPokemonList[id-1].name, // Puedes reemplazar esto con un nombre real si tienes una API
                         imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
                     )
                 }
