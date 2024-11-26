@@ -29,6 +29,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 
+//hola
+
 @Composable
 fun CamaraMainApp() {
     // Variable para almacenar la imagen capturada
