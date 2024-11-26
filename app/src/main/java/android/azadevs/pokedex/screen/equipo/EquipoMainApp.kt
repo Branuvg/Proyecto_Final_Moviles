@@ -131,16 +131,6 @@ fun PokedexEntry(
 
     Box(
         modifier = modifier
-            .shadow(5.dp, RoundedCornerShape(10.dp))
-            .clip(RoundedCornerShape(10.dp))
-            .aspectRatio(1f)
-            .background(
-                brush = Brush.verticalGradient(
-                    listOf(
-                        dominantColor, defaultDominantColor
-                    )
-                )
-            )
             .clickable {
                 // Validación antes de navegar
                 val color = dominantColor.toArgb()
@@ -162,7 +152,7 @@ fun PokedexEntry(
                     .build(),
                 contentDescription = entry.name,
                 modifier = Modifier
-                    .size(120.dp)
+                    .size(200.dp)
                     .align(Alignment.CenterHorizontally),
                 loading = {
                     CircularProgressIndicator(
