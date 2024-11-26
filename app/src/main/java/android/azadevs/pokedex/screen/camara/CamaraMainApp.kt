@@ -31,16 +31,20 @@ import androidx.compose.ui.unit.dp
 
 //hola
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+
+
 @Composable
-fun CamaraMainApp() {
-    // Variable para almacenar la imagen capturada
+fun CameraScreen() {
+    // Estado para almacenar la imagen capturada
     var capturedImage by remember { mutableStateOf<Bitmap?>(null) }
 
-    // Configurar el lanzador para iniciar la cámara
+    // Lanzador para la cámara
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicturePreview()
     ) { bitmap ->
-        // Guardar la imagen capturada
+        // Actualizar la imagen capturada
         capturedImage = bitmap
     }
 
@@ -48,47 +52,44 @@ fun CamaraMainApp() {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Botón para abrir la cámara
-        IconButton(
-            onClick = {
-                cameraLauncher.launch(null) // Se usa null porque no necesitas un URI para TakePicturePreview
-            },
+        // Mostrar la imagen capturada o un mensaje
+        Box(
             modifier = Modifier
-                .size(64.dp)
+                .fillMaxWidth()
+                .height(300.dp)
+                .padding(16.dp)
+                .border(2.dp, Color.Gray),
+            contentAlignment = Alignment.Center
         ) {
-            Icon(
-                imageVector = androidx.compose.material.icons.Icons.Default.Camera,
-                contentDescription = "Abrir cámara",
-                //tint = MaterialTheme.colors.primary
+            capturedImage?.let { bitmap ->
+                Image(
+                    bitmap = bitmap.asImageBitmap(),
+                    contentDescription = "Imagen capturada",
+                    modifier = Modifier.fillMaxSize()
+                )
+            } ?: Text(
+                text = "¡Captura una imagen!",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Gray
             )
         }
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Mostrar la imagen capturada o un texto predeterminado
-        Box(
+        // Botón para abrir la cámara
+        Button(
+            onClick = { cameraLauncher.launch(null) },
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .border(2.dp, Color.Gray),
-            contentAlignment = Alignment.Center
+                .size(64.dp)
         ) {
-            if (capturedImage != null) {
-                Image(
-                    bitmap = capturedImage!!.asImageBitmap(),
-                    contentDescription = "Imagen capturada",
-                    modifier = Modifier.fillMaxSize()
-                )
-            } else {
-                Text(text = "Pokémon", modifier = Modifier.align(Alignment.Center))
-            }
+            Icon(
+                imageVector = androidx.compose.material.icons.Icons.Default.Camera,
+                contentDescription = "Abrir cámara"
+            )
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 

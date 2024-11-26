@@ -196,15 +196,20 @@ class PokemonListViewModel @Inject constructor(
                         }
                         val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png"
 
-                        //aaaaa
-                        // Inicializar tipos directamente con un valor vacío o ficticio
+                        // Generar tipos ficticios
+                        val fakeTypes = when {
+                            number.toInt() % 3 == 0 -> listOf("Fire")
+                            number.toInt() % 3 == 1 -> listOf("Water")
+                            else -> listOf("Grass")
+                        }
+
                         PokedexListEntry(
                             number = number.toInt(),
                             name = data.name.replaceFirstChar {
                                 if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
                             },
                             imageUrl = url,
-                            type = emptyList() // O usa listOf("Fire") para pruebas
+                            type = fakeTypes // Usar tipos ficticios aquí
                         )
                     }
 
@@ -220,6 +225,7 @@ class PokemonListViewModel @Inject constructor(
             }
         }
     }
+
 
 
 

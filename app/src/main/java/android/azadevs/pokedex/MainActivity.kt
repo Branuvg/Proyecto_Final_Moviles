@@ -1,7 +1,8 @@
 package android.azadevs.pokedex
 
 import SignUpScreen
-import android.azadevs.pokedex.screen.camara.CamaraMainApp
+
+import android.azadevs.pokedex.screen.camara.CameraScreen
 import android.azadevs.pokedex.screen.detail.PokemonDetailScreen
 import android.azadevs.pokedex.screen.equipo.EquipoMainApp
 import android.azadevs.pokedex.screen.list.PokemonListScreen
@@ -130,7 +131,7 @@ class MainActivity : ComponentActivity() {
                                 viewModel
                             )
                         }
-                        composable("camara") {CamaraMainApp()}
+                        composable("camara") {CameraScreen()}
                         composable("login") {
                             LoginScreen(
                                 onLoginSuccess = { userName ->
