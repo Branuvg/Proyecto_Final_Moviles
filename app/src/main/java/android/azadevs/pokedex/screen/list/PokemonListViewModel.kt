@@ -60,33 +60,6 @@ class PokemonListViewModel @Inject constructor(
         }
     }
 
-    fun filterPokemonByType(type: String) {
-        viewModelScope.launch(Dispatchers.Default) {
-            if (type.isEmpty() || type == "All") {
-                // Restaurar la lista completa si el filtro es vacío o "All"
-                pokemonListState.value = pokemonListState.value.copy(
-                    pokemonList = cachedPokemonList,
-                    isSearching = false
-                )
-                return@launch
-            }
-
-            // Filtrar los Pokémon que contienen el tipo especificado
-            val filteredList = cachedPokemonList.filter { entry ->
-                entry.type.any { it.equals(type, ignoreCase = true) }
-            }
-
-            // Actualizar el estado con la lista filtrada
-            pokemonListState.value = pokemonListState.value.copy(
-                pokemonList = filteredList,
-                isSearching = true
-            )
-        }
-    }
-
-
-
-
     fun removePokemonFromSelected(entry: PokedexListEntry) {
         val updatedList = pokemonListState.value.selectedPokemonList.toMutableList()
         updatedList.remove(entry)
@@ -173,6 +146,30 @@ class PokemonListViewModel @Inject constructor(
         }
     }
 
+    fun filterPokemonByType(type: String) {
+        viewModelScope.launch(Dispatchers.Default) {
+            if (type.isEmpty() || type == "All") {
+                // Restaurar la lista completa si el filtro es vacío o "All"
+                pokemonListState.value = pokemonListState.value.copy(
+                    pokemonList = cachedPokemonList,
+                    isSearching = false
+                )
+                return@launch
+            }
+
+            // Filtrar los Pokémon que contienen el tipo especificado
+            val filteredList = cachedPokemonList.filter { entry ->
+                entry.type.any { it.equals(type, ignoreCase = true) }
+            }
+
+            // Actualizar el estado con la lista filtrada
+            pokemonListState.value = pokemonListState.value.copy(
+                pokemonList = filteredList,
+                isSearching = true
+            )
+        }
+    }
+
     fun loadPokemonPaginated() {
         viewModelScope.launch {
             pokemonListState.value = pokemonListState.value.copy(isLoading = true)
@@ -196,11 +193,51 @@ class PokemonListViewModel @Inject constructor(
                         }
                         val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png"
 
-                        // Generar tipos ficticios
-                        val fakeTypes = when {
-                            number.toInt() % 3 == 0 -> listOf("Fire")
-                            number.toInt() % 3 == 1 -> listOf("Water")
-                            else -> listOf("Grass")
+                        // Fake types asignados manualmente, incluyendo Pokémon con doble tipo
+                        val fakeTypes = when (number.toInt()) {
+                            // Normal
+                            in listOf(16, 19, 52, 83, 84, 108, 113, 115, 128, 132) -> listOf("Normal")
+
+                            // Fire
+                            in listOf(4, 37, 58, 77, 126, 136, 155, 218, 228) -> listOf("Fire")
+
+                            // Water
+                            in listOf(7, 54, 60, 72, 79, 86, 90, 98, 116, 118) -> listOf("Water")
+
+                            // Grass
+                            in listOf(1, 43, 69, 102, 114, 152, 187, 188, 191, 252) -> listOf("Grass")
+
+                            // Electric
+                            in listOf(25, 81, 100, 125, 135, 145, 179, 180, 181, 239) -> listOf("Electric")
+
+                            // Ice
+                            in listOf(87, 91, 124, 131, 144, 215, 220, 221, 225, 361) -> listOf("Ice")
+
+                            // Fighting
+                            in listOf(56, 57, 66, 67, 68, 106, 107, 214, 236, 237) -> listOf("Fighting")
+
+                            // Poison
+                            in listOf(23, 24, 29, 32, 41, 88, 109, 48, 72, 316) -> listOf("Poison")
+
+                            // Ground
+                            in listOf(50, 51, 27, 28, 104, 105, 231, 232, 194, 195) -> listOf("Ground")
+
+                            // Flying
+                            in listOf(16, 21, 41, 83, 84, 123, 130, 142, 144, 145) -> listOf("Flying")
+
+                            // Pokémon con doble tipo
+                            6 -> listOf("Fire", "Flying")     // Charizard
+                            3 -> listOf("Grass", "Poison")   // Venusaur
+                            9 -> listOf("Water", "Fighting") // Blastoise
+                            12 -> listOf("Bug", "Flying")    // Butterfree
+                            18 -> listOf("Normal", "Flying") // Pidgeot
+                            59 -> listOf("Fire", "Rock")     // Arcanine
+                            65 -> listOf("Psychic", "Fighting") // Alakazam (supuesto ejemplo)
+                            94 -> listOf("Ghost", "Poison")  // Gengar
+                            149 -> listOf("Dragon", "Flying") // Dragonite
+                            143 -> listOf("Normal", "Ground") // Snorlax (supuesto ejemplo)
+
+                            else -> listOf("Unknown") // Por defecto
                         }
 
                         PokedexListEntry(
@@ -209,9 +246,11 @@ class PokemonListViewModel @Inject constructor(
                                 if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
                             },
                             imageUrl = url,
-                            type = fakeTypes // Usar tipos ficticios aquí
+                            type = fakeTypes // Asignar tipos dobles si aplica
                         )
                     }
+
+
 
                     // Actualizar las listas
                     cachedPokemonList = cachedPokemonList + pokedexEntries

@@ -155,7 +155,13 @@ fun DropdownFilter(
 ) {
     var expanded by remember { mutableStateOf(false) }
     var selectedType by remember { mutableStateOf("") }
-    val types = listOf("All", "Fire", "Water", "Grass", "Electric", "Rock", "Flying")
+    val types = listOf(
+        "All", "Normal", "Fire", "Water", "Grass", "Electric", "Ice",
+        "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug",
+        "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"
+    )
+
+
 
     Box(modifier = modifier) {
         OutlinedTextField(
